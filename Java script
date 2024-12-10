@@ -1,1 +1,63 @@
 
+const apiKey = 'Your API Key'; 
+const setupTextarea = document.getElementById('setup-textarea');
+const setupInputContainer = document.getElementById('setup-input-container');
+const medicalAssistantText = document.getElementById('medical-assistant-text');
+const outputContainer = document.getElementById('output-container');
+const outputText = document.getElementById('output-text');
+const url = "https://api.openai.com/v1/completions";
+
+document.getElementById("send-btn").addEventListener("click", () => {
+    setupInputContainer.innerHTML = '<img src="images/icons8-loading.gif" class="loading" id="loading">';
+    medicalAssistantText.innerText = "Analyzing your symptoms...";
+    fetchMedicalAdvice();
+});
+
+async function fetchMedicalAdvice() {
+    try {
+        const symptomsText = setupTextarea.value;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${apiKey}` // Use backticks for template literals
+            },
+            body: JSON.stringify({
+                'model': 'gpt-3.5-turbo-instruct',
+                'prompt': `Based on the following symptoms, provide home remedies, suggest possible medicines along with their chemical compositions and dosages, and advise on what to avoid:
+                ###
+                Symptoms: fever, headache, muscle pain
+                Home Remedies: Rest, stay hydrated, take a warm bath, use a cool compress
+                Medicines: Paracetamol (Acetaminophen) - 500mg every 6 hours, Ibuprofen (Isobutylphenylpropanoic acid) - 200mg every 4-6 hours
+                Avoid: Alcohol, caffeine, strenuous activities
+                ###
+                Symptoms: ${symptomsText}
+                Home Remedies: 
+                Medicines: 
+                Avoid: 
+                `,
+                'max_tokens': 300
+            })
+        });
+
+        const data = await response.json();
+        const medicalAdvice = data.choices[0].text.trim();
+
+        // Parse the response into different sections
+        const [homeRemedies, medicines, avoid] = medicalAdvice.split("Medicines:");
+
+        // Remove loading indicator and display the response
+        setupInputContainer.innerHTML = "";
+        medicalAssistantText.innerText = "Here are the suggested home remedies, medicines, and things to avoid:";
+        outputContainer.style.display = 'block';
+        outputText.innerHTML = `
+            <h4>Home Remedies:</h4><p>${homeRemedies.trim()}</p>
+            <h4>Medicines:</h4><p>${medicines.split("Avoid:")[0].trim()}</p>
+            <h4>Avoid:</h4><p>${medicines.split("Avoid:")[1].trim()}</p>
+        `;
+    } catch (error) {
+        console.error('Error:', error);
+        medicalAssistantText.innerText = "Sorry, something went wrong. Please try again.";
+    }
+}
+
