@@ -1,1 +1,172 @@
+:root {
+    --white: #ffffff;
+    --light: whitesmoke;
+    --light-grey: #e8e8e8;
+    --blue: #007bff;
+    --medium-dark: #777;
+    --dark: #242526;
+    --border-rad-lg: 15px;
+    --green: #28a745;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('images/medical_2.jpg');
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Dimmer overlay */
+    z-index: -1;
+}
+
+header {
+    background-color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3em;
+    width: 100%;
+    padding: 1em;
+}
+
+header img {
+    height: 36px;
+}
+
+header a {
+    color: var(--green);
+    font-size: 0.9em;
+    text-decoration: none;
+    padding: 0;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+section {
+    background-color: var(--light);
+    border-radius: var(--border-rad-lg);
+    padding: 2em;
+    box-shadow: 0px 1px 18px 3px var(--dark);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Playfair Display SC', serif;
+    margin-top: 0;
+}
+
+p {
+    line-height: 1.35em;
+}
+
+#setup-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 1em;
+}
+
+textarea {
+    background-color: var(--light-grey);
+    padding: 0.8em;
+    border: none;
+    border-radius: var(--border-rad-lg);
+    width: 70%;
+    resize: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea::placeholder {
+    color: var(--medium-dark);
+    opacity: 0.8;
+}
+
+/* Button size adjustments */
+button {
+    border: none;
+    background: var(--blue);
+    cursor: pointer;
+    padding: 0.5em 1em;  /* Adjust padding for size */
+    border-radius: var(--border-rad-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3em; /* Adjust width for size */
+    height: 3em; /* Adjust height for size */
+}
+
+button img {
+    width: 1.7em;  /* Adjust width for icon size */
+    height: auto;
+    vertical-align: middle;
+}
+
+button:hover {
+    background-color: var(--dark);
+}
+
+/* Loading indicator size adjustments */
+.loading {
+    width: 44px;  /* Adjust width for size */
+    height: 44px;  /* Adjust height for size */
+    vertical-align: middle;
+}
+
+/* Output container styles */
+#output-container {
+    display: none;
+    margin-top: 1em;
+    background-color: var(--white);
+    border-radius: var(--border-rad-lg);
+    padding: 1em;
+    box-shadow: 0px 1px 18px 3px var(--dark);
+    text-align: left;
+}
+
+#output-container h4 {
+    margin: 0.5em 0;
+}
+
+#medical-assistant-text {
+    color: var(--dark);
+    background-color: var(--white);
+    padding: 1em;
+    border-radius: var(--border-rad-lg);
+    margin-top: 1em;
+}
+
+footer {
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 0.8em;
+    font-size: 0.7em;
+    text-align: center;
+    width: 100%;
+}
 
