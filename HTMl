@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Assistant</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="MEDI PLUS">
+        <h1><a href="#">MEDI PLUS</a></h1>
+    </header>
+    <main>
+        <section>
+            <h2>Medical Assistant</h2>
+            <p>Enter your symptoms, and I'll provide you with medicine suggestions and home remedies.</p>
+            <div id="setup-input-container">
+                <textarea id="setup-textarea" placeholder="Enter symptoms here"></textarea>
+                <button id="send-btn"><img src="images/send-icon.png" alt="Send"></button>
+            </div>
+            <p id="medical-assistant-text"></p>
+            <div id="output-container" style="display: none;">
+                <h3>Suggestions</h3>
+                <p id="output-text"></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 MEDI PLUS</p>
+    </footer>
+    <script src="index.js" type="module"></script>
+</body>
+</html>
 
